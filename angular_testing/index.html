@@ -21,6 +21,7 @@
         .directive('x', function () {
             return {
                 scope: {
+                    'someVal': '='
                 },
                 restrict: 'E',
                 templateUrl: 'partials/test.html',
@@ -28,24 +29,12 @@
                     scope.login = { someVal: true };
                     console.log(scope.login.someVal);
                     element.click(function () {
-                        scope.$apply(function () {
-                            scope.login.someVal = false;
+                        //scope.$apply(function () {
+                        scope.login.someVal = false;
+                        scope.$digest();
                         });
-                        
-                    });
-                    //scope.$watch("login", function () {
-                    //element.find('button').click(function () {
-                    //    scope.$apply(function () {
-                    //        scope.login.someVal = false;
-                    //    });
                     //});
-                    //console.log(element);
-                    //element.children('#header').addClass('box');
-                    //element.find('#loggedin').hide();
-                    //element.find('button').click(function () {
-                    //    scope.login = true;
-                    //})
-
+                    
                 }
             }
         })
