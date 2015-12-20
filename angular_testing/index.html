@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular testing</title>
+    <meta charset="utf-8" />
+    <style>
+        .box {
+            border: 1px solid black;
+            display: block;
+            color: blue;
+        }
+    </style>
+</head>
+<body ng-app="app">
+    <x></x>
+    <script src="external/jquery-1.11.3.js"></script>
+    <!--<script src="external/angular-ui-router.js"></script>-->
+    <script src="external/angular.js"></script>
+    <script>
+        angular.module('app', [])
+        .directive('x', function () {
+            return {
+                scope: {
+                },
+                restrict: 'E',
+                templateUrl: 'partials/test.html',
+                link: function (scope, element, attrs) {
+                    scope.login = { someVal: true };
+                    console.log(scope.login.someVal);
+                    element.click(function () {
+                        scope.$apply(function () {
+                            scope.login.someVal = false;
+                        });
+
+                    });
+                    //scope.$watch("login", function () {
+                    //element.find('button').click(function () {
+                    //    scope.$apply(function () {
+                    //        scope.login.someVal = false;
+                    //    });
+                    //});
+                    //console.log(element);
+                    //element.children('#header').addClass('box');
+                    //element.find('#loggedin').hide();
+                    //element.find('button').click(function () {
+                    //    scope.login = true;
+                    //})
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
